@@ -24,15 +24,17 @@ li {
     background-color: #f0f0f0;
     padding: 10px;
     margin: 5px;
+    cursor: pointer;
 }
 
 .res-card:hover {
     border: solid black;
-    cursor: pointer;
 }
 
-.search {
+.filter-btn {
     padding: 10px;
+    margin: 10px;
+    cursor: pointer;
 }
 
 .res-logo {
