@@ -1503,7 +1503,8 @@ const resList = [
 ];
 
 const RestaurantCard = (props) => {
-  const { resName, imageid, costForTwo, cuisines, rating } = props;
+  const { resName, imageid, costForTwo, cuisines, rating, deliveryTime } =
+    props;
   return (
     <div className="res-card">
       <img
@@ -1517,6 +1518,7 @@ const RestaurantCard = (props) => {
       <h4>{costForTwo}</h4>
       <h5>{cuisines.join(", ")}</h5>
       <h4>{rating} stars</h4>
+      <h4>{deliveryTime}</h4>
     </div>
   );
 };
@@ -1535,6 +1537,7 @@ const BodyComponent = () => {
               costForTwo={restaurant.costForTwo}
               cuisines={restaurant.cuisines}
               rating={restaurant.avgRating}
+              deliveryTime={restaurant.sla.slaString}
             />
           );
         })}
