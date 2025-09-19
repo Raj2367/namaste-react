@@ -47,13 +47,16 @@ li {
     flex-wrap: wrap;
 }
 
-.loader {
+.shimmer-container {
     display: flex;
-    justify-content: center;
-    position: fixed;
-    min-height: 100vh;
-    min-width: 100vw;
-    top: 0;
-    left: 0;
-    align-items: center;
+    flex-wrap: wrap;
+}
+
+.shimmer-card {
+    border-radius: 2%;
+    width: 200px;
+    height: 400px;
+    background-color: #f0f0f0;
+    padding: 5px;
+    margin: 10px;
 }
