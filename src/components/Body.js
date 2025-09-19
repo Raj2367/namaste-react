@@ -20,6 +20,14 @@ const Body = () => {
     );
   };
 
+  if (rList.length === 0) {
+    return (
+      <div className="loader">
+        <h1>Loading...</h1>
+      </div>
+    );
+  }
+
   return (
     <div className="body">
       <div className="filter">

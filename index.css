@@ -46,3 +46,14 @@ li {
     display: flex;
     flex-wrap: wrap;
 }
+
+.loader {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    min-height: 100vh;
+    min-width: 100vw;
+    top: 0;
+    left: 0;
+    align-items: center;
+}
