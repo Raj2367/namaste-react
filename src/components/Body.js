@@ -5,17 +5,20 @@ import Shimmer from "./Shimmer";
 
 const Body = () => {
   const [rList, setResList] = useState([]);
+  const [searchText, setSearchText] = useState("");
+  const [filteredRes, setFilteredRes] = useState([]);
   useEffect(() => {
     fetchData();
   }, []);
   const fetchData = async () => {
     const data = await fetch(RES_LIST_URL);
     const jsonData = await data.json();
-    console.log(
-      jsonData.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
-    );
 
     setResList(
+      jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
+    );
+    setFilteredRes(
       jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
@@ -26,32 +29,54 @@ const Body = () => {
   ) : (
     <div className="body">
       <div className="filter">
+        <input
+          type="text"
+          className="search-box"
+          value={searchText}
+          onChange={(e) => {
+            setSearchText(e.target.value);
+          }}
+        />
+        <button
+          onClick={() => {
+            const filteredList = rList.filter((res) =>
+              res.info?.name.toLowerCase().includes(searchText.toLowerCase())
+            );
+            setFilteredRes(filteredList);
+          }}
+        >
+          Search
+        </button>
         <button
           className="filter-btn"
           onClick={() => {
             const filteredList = rList.filter(
               (res) => res.info.avgRating > 4.5
             );
-            setResList(filteredList);
+            setFilteredRes(filteredList);
           }}
         >
           Top Rated Restaurants
         </button>
       </div>
       <div className="res-container">
-        {rList.map((restaurant) => {
-          return (
-            <RestaurantCard
-              key={restaurant.info?.id}
-              resName={restaurant.info?.name}
-              imageid={restaurant.info?.cloudinaryImageId}
-              costForTwo={restaurant.info?.costForTwo}
-              cuisines={restaurant.info?.cuisines}
-              rating={restaurant.info?.avgRating}
-              deliveryTime={restaurant.info?.sla?.slaString}
-            />
-          );
-        })}
+        {filteredRes.length === 0 ? (
+          <h3>No restaurant founnd</h3>
+        ) : (
+          filteredRes.map((restaurant) => {
+            return (
+              <RestaurantCard
+                key={restaurant.info?.id}
+                resName={restaurant.info?.name}
+                imageid={restaurant.info?.cloudinaryImageId}
+                costForTwo={restaurant.info?.costForTwo}
+                cuisines={restaurant.info?.cuisines}
+                rating={restaurant.info?.avgRating}
+                deliveryTime={restaurant.info?.sla?.slaString}
+              />
+            );
+          })
+        )}
       </div>
     </div>
   );
