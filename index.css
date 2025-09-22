@@ -8,12 +8,12 @@
     width: 100px;
 }
 
-ul {
+.nav-items ul {
     display: flex;
     list-style-type: none;
 }
 
-li {
+.nav-items li {
     padding: 10px;
     margin: 10px;
 }
