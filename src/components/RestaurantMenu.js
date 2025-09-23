@@ -14,10 +14,12 @@ const RestaurantMenu = () => {
   const fetchMenu = async () => {
     const data = await fetch(MENU_API + resid);
     const jsonData = await data.json();
-    setResMenu(
-      jsonData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]
-        ?.card?.card?.itemCards
-    );
+    const regularCards =
+      jsonData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+    const regularCard =
+      regularCards?.[1]?.card?.card?.itemCards ||
+      regularCards?.[2]?.card?.card?.itemCards;
+    setResMenu(regularCard || []);
     setResInfo(jsonData?.data?.cards[2]?.card?.card?.info);
   };
   return resMenu === null ? (
@@ -31,11 +33,10 @@ const RestaurantMenu = () => {
       <h3>Menu</h3>
       <ul>
         {resMenu?.map((menu) => {
+          const info = menu?.card?.info || menu?.dish?.info;
           return (
-            <li key={menu?.card?.info?.id}>
-              {menu?.card?.info?.name} - Rs.
-              {(menu?.card?.info?.price || menu?.card?.info?.defaultPrice) /
-                100}
+            <li key={info?.id}>
+              {info?.name} - Rs. {(info?.price ?? info?.defaultPrice) / 100}
             </li>
           );
         })}
