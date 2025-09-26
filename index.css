@@ -83,5 +83,10 @@
 
 .dish-image img {
     height: 15vh;
+    width: 100%;
     border-radius: 5%;
+}
+
+.about-us {
+    border: 1px solid black;
 }

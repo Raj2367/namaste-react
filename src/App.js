@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router";
-import AboutUs from "./components/AboutUs";
+import AboutUs from "./components/AboutUs.js";
 import ContactUs from "./components/ContactUs";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
@@ -23,7 +23,7 @@ const App = () => {
   return (
     <div className="app">
       <Header />
-      <Outlet />
+      <Outlet /> {/** render all children of App component */}
     </div>
   );
 };
@@ -39,7 +39,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/about",
-        element: <AboutUs />,
+        element: <AboutUs name="pruthwi" />,
       },
       {
         path: "/contact",
