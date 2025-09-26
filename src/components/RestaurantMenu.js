@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router";
-import { RESTAURANT_LOGO } from "../utils/constants";
-import useRestaurantMenu from "../utils/useRestaurantMenu";
+import { MENU_API, RESTAURANT_LOGO } from "../utils/constants";
+import useFetchData from "../utils/useFetchData";
 
 const RestaurantMenu = () => {
   const { resid } = useParams();
-  const jsonData = useRestaurantMenu(resid);
+  const jsonData = useFetchData(MENU_API + resid);
   const regularCards =
     jsonData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
   const resMenu =

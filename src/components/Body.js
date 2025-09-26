@@ -1,31 +1,21 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import { RES_LIST_URL } from "../utils/constants";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router";
+import useFetchData from "../utils/useFetchData";
 
 const Body = () => {
-  const [rList, setResList] = useState([]);
   const [searchText, setSearchText] = useState("");
-  const [filteredRes, setFilteredRes] = useState([]);
-  useEffect(() => {
-    fetchData();
-  }, []);
-  const fetchData = async () => {
-    const data = await fetch(RES_LIST_URL);
-    const jsonData = await data.json();
+  const jsonData = useFetchData(RES_LIST_URL);
+  const rList =
+    jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+      ?.restaurants;
+  const filteredRes =
+    jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+      ?.restaurants;
 
-    setResList(
-      jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants
-    );
-    setFilteredRes(
-      jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants
-    );
-  };
-
-  return rList.length === 0 ? (
+  return rList === undefined ? (
     <Shimmer />
   ) : (
     <div className="body">
