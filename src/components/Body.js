@@ -1,19 +1,32 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import { RES_LIST_URL } from "../utils/constants";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router";
 import useFetchData from "../utils/useFetchData";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
+  const [rList, setResList] = useState();
   const [searchText, setSearchText] = useState("");
+  const [filteredRes, setFilteredRes] = useState([]);
   const jsonData = useFetchData(RES_LIST_URL);
-  const rList =
-    jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-      ?.restaurants;
-  const filteredRes =
-    jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-      ?.restaurants;
+  useEffect(() => {
+    const restaurants =
+      jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants;
+    setResList(restaurants);
+    setFilteredRes(restaurants);
+  }, [jsonData]);
+
+  const onlineStatus = useOnlineStatus();
+  if (onlineStatus === false) {
+    return (
+      <h1>
+        It looks like you are offline!!! Please check your internet connection
+      </h1>
+    );
+  }
 
   return rList === undefined ? (
     <Shimmer />
