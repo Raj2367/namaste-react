@@ -32,38 +32,45 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter">
-        <input
-          type="text"
-          className="search-box"
-          value={searchText}
-          onChange={(e) => {
-            setSearchText(e.target.value);
-          }}
-        />
-        <button
-          onClick={() => {
-            const filteredList = rList.filter((res) =>
-              res.info?.name.toLowerCase().includes(searchText.toLowerCase())
-            );
-            setFilteredRes(filteredList);
-          }}
-        >
-          Search
-        </button>
-        <button
-          className="filter-btn"
-          onClick={() => {
-            const filteredList = rList.filter(
-              (res) => res.info.avgRating > 4.5
-            );
-            setFilteredRes(filteredList);
-          }}
-        >
-          Top Rated Restaurants
-        </button>
+      <div className="filter flex items-center">
+        <div>
+          <input
+            type="text"
+            className="p-4 m-4 border border-solid border-black rounded-lg"
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          />
+        </div>
+        <div>
+          <button
+            className="px-4 py-2 m-4 bg-green-100 rounded-lg hover:cursor-pointer"
+            onClick={() => {
+              const filteredList = rList.filter((res) =>
+                res.info?.name.toLowerCase().includes(searchText.toLowerCase())
+              );
+              setFilteredRes(filteredList);
+            }}
+          >
+            Search
+          </button>
+        </div>
+        <div>
+          <button
+            className="px-4 py-2 m-4 bg-gray-100 rounded-lg hover:cursor-pointer"
+            onClick={() => {
+              const filteredList = rList.filter(
+                (res) => res.info.avgRating > 4.5
+              );
+              setFilteredRes(filteredList);
+            }}
+          >
+            Top Rated Restaurants
+          </button>
+        </div>
       </div>
-      <div className="res-container">
+      <div className="flex flex-wrap ">
         {filteredRes.length === 0 ? (
           <h3>No restaurant founnd</h3>
         ) : (
@@ -72,6 +79,7 @@ const Body = () => {
               <Link
                 key={restaurant?.info?.id}
                 to={`/restaurant/${restaurant?.info?.id}`}
+                className="p-4"
               >
                 <RestaurantCard
                   resName={restaurant?.info?.name}

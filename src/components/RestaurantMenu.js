@@ -16,24 +16,24 @@ const RestaurantMenu = () => {
   return resMenu === undefined ? (
     <Shimmer />
   ) : (
-    <div className="Menu">
-      <h1>{resInfo?.name}</h1>
-      <p>
+    <div className="p-4 m-4">
+      <div className="font-bold text-4xl">{resInfo?.name}</div>
+      <div>
         {resInfo?.cuisines?.join(", ")} - {resInfo?.costForTwoMessage}
-      </p>
-      <h3>Menu</h3>
+      </div>
+      <div className="py-4 font-semibold text-2xl">Menu</div>
       <ul>
         {resMenu?.map((menu) => {
           const info = menu?.card?.info || menu?.dish?.info;
           return (
-            <div key={info?.id} className="dish-container">
-              <div className="dish-name">
+            <div key={info?.id} className="flex justify-between p-2 w-5xl">
+              <div className="py-4 text-md">
                 <li>
                   {info?.name} - Rs. {(info?.price ?? info?.defaultPrice) / 100}
                 </li>
               </div>
-              <div className="dish-image">
-                <img src={RESTAURANT_LOGO + info?.imageId} />
+              <div className="w-50">
+                <img className="rounded-lg" src={RESTAURANT_LOGO + info?.imageId} />
               </div>
             </div>
           );
