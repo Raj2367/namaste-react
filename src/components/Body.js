@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withPromotedTag } from "./RestaurantCard";
 import { RES_LIST_URL } from "../utils/constants";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router";
@@ -11,6 +11,7 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
   const [filteredRes, setFilteredRes] = useState([]);
   const jsonData = useFetchData(RES_LIST_URL);
+  const RestaurantCardPromoted = withPromotedTag(RestaurantCard);
   useEffect(() => {
     const restaurants =
       jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
@@ -72,7 +73,7 @@ const Body = () => {
       </div>
       <div className="flex flex-wrap ">
         {filteredRes.length === 0 ? (
-          <h3>No restaurant founnd</h3>
+          <h3>No restaurant found</h3>
         ) : (
           filteredRes.map((restaurant) => {
             return (
@@ -81,14 +82,11 @@ const Body = () => {
                 to={`/restaurant/${restaurant?.info?.id}`}
                 className="p-4"
               >
-                <RestaurantCard
-                  resName={restaurant?.info?.name}
-                  imageid={restaurant?.info?.cloudinaryImageId}
-                  costForTwo={restaurant?.info?.costForTwo}
-                  cuisines={restaurant?.info?.cuisines}
-                  rating={restaurant?.info?.avgRating}
-                  deliveryTime={restaurant?.info?.sla?.slaString}
-                />
+                {restaurant?.info?.areaName === "Whitefield" ? (
+                  <RestaurantCard {...restaurant?.info} />
+                ) : (
+                  <RestaurantCardPromoted {...restaurant?.info} />
+                )}
               </Link>
             );
           })
