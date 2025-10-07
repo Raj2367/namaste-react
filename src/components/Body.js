@@ -73,7 +73,7 @@ const Body = () => {
       </div>
       <div className="flex flex-wrap ">
         {filteredRes.length === 0 ? (
-          <h3>No restaurant found</h3>
+          <h3 className="font-bold text-xl p-4 m-4">No restaurant found</h3>
         ) : (
           filteredRes.map((restaurant) => {
             return (
