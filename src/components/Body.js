@@ -14,7 +14,7 @@ const Body = () => {
   const RestaurantCardPromoted = withPromotedTag(RestaurantCard);
   useEffect(() => {
     const restaurants =
-      jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+      jsonData?.data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
     setResList(restaurants);
     setFilteredRes(restaurants);
@@ -82,7 +82,7 @@ const Body = () => {
                 to={`/restaurant/${restaurant?.info?.id}`}
                 className="p-4"
               >
-                {restaurant?.info?.areaName === "Whitefield" ? (
+                {restaurant?.info?.sla?.deliveryTime < 30 ? (
                   <RestaurantCard {...restaurant?.info} />
                 ) : (
                   <RestaurantCardPromoted {...restaurant?.info} />
