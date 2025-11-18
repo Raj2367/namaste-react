@@ -6,9 +6,9 @@ const RestaurantCategory = (props) => {
     setShowIndex();
   };
   return (
-    <div className="bg-gray-100 p-4 mx-auto my-4 w-6/12 shadow-lg">
+    <div className="bg-gray-100 mx-auto my-4 w-6/12 shadow-lg">
       <div
-        className="flex justify-between cursor-pointer"
+        className="p-4 flex justify-between cursor-pointer"
         onClick={handleClick}
       >
         <span className="font-bold">
