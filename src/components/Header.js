@@ -3,10 +3,13 @@ import { CDN_URL } from "../utils/constants";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import { useContext } from "react";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 const Header = () => {
   const onlineStatus = useOnlineStatus();
   const { name } = useContext(UserContext);
-
+  const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems);
+  
   return (
     <div className="flex justify-between bg-pink-50">
       <div className="logo-container">
@@ -26,15 +29,13 @@ const Header = () => {
             <Link to="/contact">Contact Us</Link>
           </li>
           <li className="px-4">
-            <Link to="/">Cart</Link>
+            <Link to="/cart">Cart ({cartItems.length} items)</Link>
           </li>
           <li className="px-4">
             <Link to="/grocery">Grocery</Link>
           </li>
           <li className="px-4">User: {name}</li>
-          <li className="px-4">
-            Online-Status: {onlineStatus ? "✅" : "❌"}
-          </li>
+          <li className="px-4">Online-Status: {onlineStatus ? "✅" : "❌"}</li>
         </ul>
       </div>
     </div>
