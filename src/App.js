@@ -6,6 +6,9 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router";
 import ContactUs from "./components/ContactUs";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
+import Cart from "./components/Cart.js";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore.js";
 const Grocery = lazy(() => import("./components/Grocery.js"));
 const About = lazy(() => import("./components/AboutUs.js"));
 
@@ -22,10 +25,12 @@ const About = lazy(() => import("./components/AboutUs.js"));
 
 const App = () => {
   return (
-    <div className="app">
-      <Header />
-      <Outlet /> {/** render all children of App component */}
-    </div>
+    <Provider store={appStore}>
+      <div className="app">
+        <Header />
+        <Outlet /> {/** render all children of App component */}
+      </div>
+    </Provider>
   );
 };
 
@@ -61,6 +66,10 @@ const router = createBrowserRouter([
             <Grocery />
           </Suspense>
         ),
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
     errorElement: <Error />,
