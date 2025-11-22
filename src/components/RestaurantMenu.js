@@ -33,6 +33,9 @@ const RestaurantMenu = () => {
             {...category?.card?.card}
             showItem={index === showIndex}
             setShowIndex={() => {
+              // if accordion is opened then close 
+              // by setting showIndex to null
+              // otherwise set new index value
               setShowIndex(index === showIndex ? null : index);
             }}
           />

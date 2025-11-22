@@ -14,6 +14,7 @@ const RestaurantCategory = (props) => {
         <span className="font-bold">
           {title} ({itemCards?.length})
         </span>
+        {/* showItem is a boolean variable */}
         <span>{showItem ? "▲" : "▼"}</span>
       </div>
       <div>{showItem && <ItemList items={itemCards} />}</div>
