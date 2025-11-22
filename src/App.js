@@ -10,6 +10,7 @@ import Cart from "./components/Cart.js";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore.js";
 import Footer from "./components/Footer.js";
+import OrderSuccess from "./components/OrderSuccess.js";
 const Grocery = lazy(() => import("./components/Grocery.js"));
 const About = lazy(() => import("./components/AboutUs.js"));
 
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/order/success",
+        element: <OrderSuccess />,
       },
     ],
     errorElement: <Error />,

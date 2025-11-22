@@ -101,9 +101,11 @@ const Cart = () => {
             </div>
           </div>
           <div className="m-auto w-6/12">
-            <button className="mb-100 p-4 w-full bg-green-500 font-bold text-white rounded-xl cursor-pointer">
-              Checkout
-            </button>
+            <Link to="/order/success">
+              <button className="mb-4 p-4 w-full bg-green-500 font-bold text-white rounded-xl cursor-pointer">
+                Checkout
+              </button>
+            </Link>
           </div>
         </div>
       )}
