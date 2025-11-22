@@ -9,6 +9,7 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import Cart from "./components/Cart.js";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore.js";
+import Footer from "./components/Footer.js";
 const Grocery = lazy(() => import("./components/Grocery.js"));
 const About = lazy(() => import("./components/AboutUs.js"));
 
@@ -29,6 +30,7 @@ const App = () => {
       <div className="app">
         <Header />
         <Outlet /> {/** render all children of App component */}
+        <Footer />
       </div>
     </Provider>
   );
