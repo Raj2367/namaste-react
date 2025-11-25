@@ -102,7 +102,10 @@ const Cart = () => {
           </div>
           <div className="m-auto w-6/12">
             <Link to="/order/success">
-              <button className="mb-4 p-4 w-full bg-green-500 font-bold text-white rounded-xl cursor-pointer">
+              <button
+                className="mb-4 p-4 w-full bg-green-500 font-bold text-white rounded-xl cursor-pointer"
+                onClick={handleClearCart}
+              >
                 Checkout
               </button>
             </Link>

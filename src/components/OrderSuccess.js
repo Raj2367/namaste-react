@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 const OrderSuccess = () => {
   return (
-    <div className="my-50 flex items-center justify-center">
+    <div className="mt-50 flex items-center justify-center">
       <div className="bg-white p-8 rounded-xl shadow-lg max-w-md w-full text-center">
         <img
           src="https://cdn-icons-png.flaticon.com/512/190/190411.png"
